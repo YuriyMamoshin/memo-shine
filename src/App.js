@@ -4,11 +4,9 @@ function App() {
 
 
 
-  
-
   return (
     <div className="App">
-  <Start />
+      <Start />
 
     </div>
   );

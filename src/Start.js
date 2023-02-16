@@ -15,7 +15,7 @@ export default function Start() {
 
     function processData(event) {
         event.preventDefault();
-            setIsSubmitted(true);
+        setIsSubmitted(true);
 
         setData(oldData => {
             const dataArray = oldData[0].split(/\r?\n/);
@@ -23,31 +23,44 @@ export default function Start() {
                 id: nanoid(),
                 answer: piece.split(" - ")[0],
                 definition: piece.split(" - ")[1],
+                hidden: false
             }))
         })
     }
 
+    function checkAnswer(id) {
+        setData(oldData => {
+            return oldData.filter(memo => memo.id !== id)
+        })
+}
 
+function gradeAnswer(id) {
+        setData(oldData => {
+            return oldData.filter(memo => memo.id !== id)
+        })
+}
 
     const memos = data.map(memo => {
-        return  <Memo
-        key={memo.id}
+        return <Memo
+            key={memo.id}
             answer={memo.answer}
             definition={memo.definition}
+            hidden={memo.hidden}
+            check={() => checkAnswer(memo.id)}
+            grade={() => gradeAnswer(memo.id)}
         />
     })
-  
-console.log(memos);
+
 
     return (
-        <div >
+        <div className="start-container">
             {!isSubmitted ?
                 <Form
                     data={data}
                     collect={collectData}
                     process={processData}
                 /> :
-                 memos
+                memos
             }
 
         </div>
