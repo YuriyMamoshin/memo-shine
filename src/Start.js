@@ -58,11 +58,6 @@ export default function Start() {
         })
     }
 
-    // const result = arr.reduce((res, item) => {
-    //     res[predicate(item) ? 'a' : 'b'].push(item);
-    //     return res;
-    // }, { a: [], b: [] });
-
 
     const memos = data.map(memo => {
         return <Memo
