@@ -4,8 +4,10 @@ body {
 }
 
 .start-container {
-  background-color: rgba(0, 0, 0, 0.432);
   color: white;
+  display: grid;
+  grid-template-columns: auto 300px;
+  grid-template-rows: 100vh;
 }
 
 .form-container {
@@ -15,12 +17,17 @@ body {
   align-items: center;
 }
 
+.main-cintainer {
+overflow: auto;
+}
+
 .memo-container {
   display: grid;
   grid-template-columns: auto auto auto auto;
   justify-content: center;
   align-items: center;
   gap: 20px;
+  background-color: rgba(0, 0, 0, 0.432);
 }
 
 .memo-container>div {
@@ -51,7 +58,6 @@ body {
   border-radius: 100px;
   font-family: sans-serif;
   color: black;
-  visibility: hidden;
 }
 
 .correct-button {
@@ -60,4 +66,12 @@ body {
 
 .incorrect-button {
   background-color: rgb(231, 57, 34);
+}
+
+.sidebar-container {
+  position: fixed;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: aqua;
 }
