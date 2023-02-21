@@ -8,7 +8,7 @@ export default function Start() {
 
     const [data, setData] = useState([]);
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [answers, setAnswers] = useState({answers: []});
+    const [answers, setAnswers] = useState({ correctAnswers: [], incorrectAnswers: [] });
 
     function collectData(event) {
         let value = event.target.value;
@@ -40,19 +40,26 @@ export default function Start() {
         })
     }
 
-    function gradeAnswer(id) {
+    function gradeAnswer(id, gradeId) {
         setData(oldData => {
             const result = oldData.reduce((res, memo) => {
                 res[memo.id !== id ? "residualMemos" : "gradedMemo"].push(memo);
                 return res;
             }, { residualMemos: [], gradedMemo: [] })
             setAnswers(oldAnswers => {
-                return {
-                    ...oldAnswers,
-                    answers: [
-                        ...oldAnswers.answers, answers[oldAnswers.answers.length] = result.gradedMemo[0]
-                    ]
-                }
+                return gradeId ?
+                    {
+                        ...oldAnswers,
+                        correctAnswers: [
+                            ...oldAnswers.correctAnswers, answers[oldAnswers.correctAnswers.length] = result.gradedMemo[0]
+                        ]
+                    } :
+                    {
+                        ...oldAnswers,
+                        incorrectAnswers: [
+                            ...oldAnswers.incorrectAnswers, answers[oldAnswers.incorrectAnswers.length] = result.gradedMemo[0]
+                        ]
+                    }
             })
             return result.residualMemos;
         })
@@ -66,7 +73,8 @@ export default function Start() {
             definition={memo.definition}
             checked={memo.checked}
             check={() => checkAnswer(memo.id)}
-            grade={() => gradeAnswer(memo.id)}
+            grade={gradeAnswer}
+            memoId={memo.id}
         />
     })
 
@@ -83,8 +91,10 @@ export default function Start() {
                     memos
                 }
             </div>
-            <Sidebar 
-            answers={answers.answers}
+            <Sidebar
+                correctAnswers={answers.correctAnswers}
+                incorrectAnswers={answers.incorrectAnswers}
+                data={data}
             />
         </div>
     );

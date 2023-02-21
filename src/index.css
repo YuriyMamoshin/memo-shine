@@ -74,4 +74,8 @@ overflow: auto;
   width: 300px;
   height: 100%;
   background-color: aqua;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: black;
 }

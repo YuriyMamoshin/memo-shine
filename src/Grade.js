@@ -1,10 +1,9 @@
 export default function Grade(props) {
     return (
 <div
-onClick={props.grade}
+onClick={() => props.grade(props.memoId, props.id)}
 className={props.class}
 style={props.style}
-id={props.id}
 >
 {props.content}
 </div>
