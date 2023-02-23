@@ -3,6 +3,7 @@ import Form from "./Form";
 import Memo from "./Memo";
 import { nanoid } from "nanoid";
 import Sidebar from "./Sidebar";
+import Result from "./Result";
 
 export default function Start() {
 
@@ -78,18 +79,22 @@ export default function Start() {
         />
     })
 
+    let stage = <Form
+        data={data}
+        collect={collectData}
+        process={processData}
+    />;
+
+    if (isSubmitted && data.length) {
+        stage = memos;
+    } else if (isSubmitted && !data.length) {
+        stage = <Result />;
+    }
 
     return (
         <div className="start-container">
             <div className="main-container">
-                {!isSubmitted ?
-                    <Form
-                        data={data}
-                        collect={collectData}
-                        process={processData}
-                    /> :
-                    memos
-                }
+                {stage}
             </div>
             <Sidebar
                 correctAnswers={answers.correctAnswers}

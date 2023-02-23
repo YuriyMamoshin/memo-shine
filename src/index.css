@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: "Oswald", sans-serif;
+  background-color: rgba(0, 0, 0, 0.432);
 }
 
 .start-container {
@@ -8,6 +9,27 @@ body {
   display: grid;
   grid-template-columns: auto 300px;
   grid-template-rows: 100vh;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.form>textarea {
+  font-size: 15px;
+  font-family: "Oswald", sans-serif;
+  overflow: auto;
+}
+
+.form>button {
+  background-color: rgb(109, 178, 213);
+  color: black;
+  font-size: 30px;
 }
 
 .form-container {
@@ -18,7 +40,7 @@ body {
 }
 
 .main-cintainer {
-overflow: auto;
+  overflow: auto;
 }
 
 .memo-container {
@@ -27,7 +49,6 @@ overflow: auto;
   justify-content: center;
   align-items: center;
   gap: 20px;
-  background-color: rgba(0, 0, 0, 0.432);
 }
 
 .memo-container>div {
@@ -36,12 +57,13 @@ overflow: auto;
   font-size: 26px;
   text-align: center;
   margin-bottom: 20px;
-  border-radius: 10px; 
+  border-radius: 10px;
   cursor: pointer;
 }
 
 .memo-container>div:active {
-  box-shadow: 5px 5px 8px 2px black;;
+  box-shadow: 5px 5px 8px 2px black;
+  ;
 }
 
 .memo-answer {

@@ -23,7 +23,10 @@ export default function Memo(props) {
                 id={0}
             />
 
-            <div className="memo-answer" onClick={props.check}>{props.answer}</div>
+            <div className="memo-answer" onClick={props.check}>{
+                props.checked ? props.answer : "???"
+            }
+            </div>
             <div className="memo-definition">{props.definition}</div>
         </div>
     )
