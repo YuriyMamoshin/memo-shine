@@ -22,7 +22,8 @@ export default function Start() {
 
         setData(oldData => {
             const dataArray = oldData[0].split(/\r?\n/);
-            return dataArray.map(piece => ({
+            const filteredArray = dataArray.filter(piece => ~piece.indexOf(" - "))
+            return filteredArray.map(piece => ({
                 id: nanoid(),
                 answer: piece.split(" - ")[0],
                 definition: piece.split(" - ")[1],
@@ -88,7 +89,9 @@ export default function Start() {
     if (isSubmitted && data.length) {
         stage = memos;
     } else if (isSubmitted && !data.length) {
-        stage = <Result />;
+        stage = <Result 
+        correct={answers.correctAnswers}
+        />;
     }
 
     return (
