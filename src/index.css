@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: "Oswald", sans-serif;
-  background-image: url('./images/sparkler.jpg');
+  background-image: url('./images/sunrise.jpg');
  background-size: 100%;
 }
 
@@ -17,15 +17,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-
 }
 
 .form>textarea {
   font-size: 15px;
   font-family: "Oswald", sans-serif;
   overflow: auto;
-  background-color: rgb(109, 178, 213);
+  background-color: rgba(109, 178, 213, 0.664);
   color: rgb(250, 252, 235);
   text-shadow: 1px 1px 6px black;
   font-size: 18px;
@@ -33,7 +31,7 @@ body {
 }
 
 .form>button {
-  background-color: rgb(165, 216, 241);
+  background-color: rgba(165, 216, 241, 0.664);
   color: black;
   font-size: 30px;
 }
@@ -47,9 +45,10 @@ body {
 }
 
 .form-container>p {
-  background-color: rgb(109, 178, 213);
-  color: rgb(233, 240, 158);
+  background-color: rgba(109, 178, 213, 0.664);
+  color: rgba(233, 240, 158);
   text-shadow: 2px 2px black;
+  padding: 0 5px;
 }
 
 .main-cintainer {

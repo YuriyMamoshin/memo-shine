@@ -8,8 +8,8 @@ export default function Result(props) {
                 <p> {correctString} </p> </p> :
                 <p>You have no correct answers</p>
                 }
-                
-            <button onClick={props.next}>Next stage</button>
+              
+            <button onClick={props.refresh}>Next stage</button>
         </div>
     )
 }

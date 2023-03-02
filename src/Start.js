@@ -80,17 +80,44 @@ export default function Start() {
         />
     })
 
-    let stage = <Form
+    function shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+
+        while (currentIndex != 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
+
+    function refreshData() {
+        const shuffledArray = shuffle(answers.incorrectAnswers);
+        setData(shuffledArray.map(piece => ({
+            ...piece,
+            checked: false
+        })));
+        setAnswers({ correctAnswers: [], incorrectAnswers: [] });
+    }
+
+    let stage;
+
+
+    stage = <Form
         data={data}
         collect={collectData}
         process={processData}
     />;
 
+
     if (isSubmitted && data.length) {
         stage = memos;
     } else if (isSubmitted && !data.length) {
-        stage = <Result 
-        correct={answers.correctAnswers}
+        stage = <Result
+            correct={answers.correctAnswers}
+            refresh={refreshData}
         />;
     }
 
