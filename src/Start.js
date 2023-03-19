@@ -44,10 +44,12 @@ export default function Start() {
 
     function gradeAnswer(id, gradeId) {
         setData(oldData => {
+            
             const result = oldData.reduce((res, memo) => {
                 res[memo.id !== id ? "residualMemos" : "gradedMemo"].push(memo);
                 return res;
             }, { residualMemos: [], gradedMemo: [] })
+
             setAnswers(oldAnswers => {
                 return gradeId ?
                     {

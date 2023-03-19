@@ -30,7 +30,7 @@ body {
   padding: 10px;
 }
 
-.form>button {
+button {
   background-color: rgba(165, 216, 241, 0.664);
   color: black;
   font-size: 30px;
@@ -51,13 +51,13 @@ body {
   padding: 0 5px;
 }
 
-.main-cintainer {
+.main-container {
   overflow: auto;
 }
 
 .memo-container {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 300px auto auto;
   justify-content: center;
   align-items: center;
   gap: 20px;
@@ -71,12 +71,7 @@ body {
   text-align: center;
   margin-bottom: 20px;
   border-radius: 10px;
-  cursor: pointer;
-}
-
-.memo-container>div:active {
-  box-shadow: 5px 5px 8px 2px black;
-  ;
+  
 }
 
 .memo-answer {
@@ -93,6 +88,20 @@ body {
   border-radius: 100px;
   font-family: sans-serif;
   color: white;
+  cursor: pointer;
+  min-width: 70px;
+  min-height: 50px;
+}
+
+.grade-button:active {
+  box-shadow: 5px 5px 8px 2px black;
+
+}
+
+.grade-container {
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
 }
 
 .correct-button {
@@ -103,7 +112,7 @@ body {
   background-color: rgba(231, 57, 34, 0.664);
 }
 
-.memo-button {
+.memo {
   box-shadow: 0px 0px 18px rgb(255, 255, 255);
 }
 
@@ -120,6 +129,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-shadow: 1px 1px 3px black;
 }
 
 .result-container {
@@ -127,5 +137,14 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  justify-self: center;
+  justify-items: center;
+  font-size: 26px;
+  margin-top: 25%;
+}
+
+.result-text {
+  text-shadow: 1px 1px 3px black;
+  padding: 20px;
+  margin-bottom: 30px;
+  background-color: rgba(233, 150, 122, 0.664);
 }

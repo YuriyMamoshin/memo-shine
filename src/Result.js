@@ -4,11 +4,13 @@ export default function Result(props) {
 
     return (
         <div className="result-container">
-            {correctString ? <p> You have answered these questions correctly, so you might delete them from database as fully learned:
+            <div className="memo-button result-text">
+            {correctString ? <p> You have answered these questions correctly, so you might want to delete them from database:
                 <p> {correctString} </p> </p> :
                 <p>You have no correct answers</p>
-                }
-              
+            }
+            </div>
+
             <button onClick={props.refresh}>Next stage</button>
         </div>
     )
