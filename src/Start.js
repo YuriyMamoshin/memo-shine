@@ -22,13 +22,18 @@ export default function Start() {
 
         setData(oldData => {
             const dataArray = oldData[0].split(/\r?\n/);
-            const filteredArray = dataArray.filter(piece => ~piece.indexOf(" - "))
-            return filteredArray.map(piece => ({
-                id: nanoid(),
-                answer: piece.split(" - ")[0],
-                definition: piece.split(" - ")[1],
-                checked: false
-            }))
+            const filteredArray = dataArray.filter(piece => piece.includes(" - "));
+
+            return filteredArray.map(piece => {
+                let [answer, definition] = piece.split(" - ");
+
+                return {
+                    id: nanoid(),
+                    answer: answer,
+                    definition: definition,
+                    checked: false
+                }
+            })
         })
     }
 
@@ -44,8 +49,8 @@ export default function Start() {
 
     function gradeAnswer(id, gradeId) {
         setData(oldData => {
-            
-            const result = oldData.reduce((res, memo) => {
+
+            const memosArray = oldData.reduce((res, memo) => {
                 res[memo.id !== id ? "residualMemos" : "gradedMemo"].push(memo);
                 return res;
             }, { residualMemos: [], gradedMemo: [] })
@@ -55,32 +60,19 @@ export default function Start() {
                     {
                         ...oldAnswers,
                         correctAnswers: [
-                            ...oldAnswers.correctAnswers, answers[oldAnswers.correctAnswers.length] = result.gradedMemo[0]
+                            ...oldAnswers.correctAnswers, memosArray.gradedMemo[0]
                         ]
                     } :
                     {
                         ...oldAnswers,
                         incorrectAnswers: [
-                            ...oldAnswers.incorrectAnswers, answers[oldAnswers.incorrectAnswers.length] = result.gradedMemo[0]
+                            ...oldAnswers.incorrectAnswers, memosArray.gradedMemo[0]
                         ]
                     }
             })
-            return result.residualMemos;
+            return memosArray.residualMemos;
         })
     }
-
-
-    const memos = data.map(memo => {
-        return <Memo
-            key={memo.id}
-            answer={memo.answer}
-            definition={memo.definition}
-            checked={memo.checked}
-            check={() => checkAnswer(memo.id)}
-            grade={gradeAnswer}
-            memoId={memo.id}
-        />
-    })
 
     function shuffle(array) {
         let currentIndex = array.length, randomIndex;
@@ -104,10 +96,21 @@ export default function Start() {
         setAnswers({ correctAnswers: [], incorrectAnswers: [] });
     }
 
-    let stage;
+
+    const memos = data.map(memo => {
+        return <Memo
+            key={memo.id}
+            answer={memo.answer}
+            definition={memo.definition}
+            checked={memo.checked}
+            check={() => checkAnswer(memo.id)}
+            grade={gradeAnswer}
+            memoId={memo.id}
+        />
+    })
 
 
-    stage = <Form
+    let stage = <Form
         data={data}
         collect={collectData}
         process={processData}
