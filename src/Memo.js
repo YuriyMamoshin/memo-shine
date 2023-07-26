@@ -5,7 +5,6 @@ export default function Memo(props) {
         <div
             className="memo-container"
         >
-
             {!props.checked ? <div className="grade-button memo" onClick={props.check}>Check</div> :
                 <div className="grade-container">
                     <Grade

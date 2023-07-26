@@ -1,25 +1,25 @@
-body {
+.page {
   margin: 0;
   font-family: "Oswald", sans-serif;
   background-image: url('./images/sunrise.jpg');
  background-size: 100%;
 }
 
-.start-container {
+.start {
   color: white;
   display: grid;
   grid-template-columns: auto 300px;
   grid-template-rows: 100vh;
 }
 
-.form {
+.form-block__form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.form>textarea {
+.form-block__textarea {
   font-size: 15px;
   font-family: "Oswald", sans-serif;
   overflow: auto;
@@ -28,6 +28,8 @@ body {
   text-shadow: 1px 1px 6px black;
   font-size: 18px;
   padding: 10px;
+  width: 80vw;
+  height: 50vh;
 }
 
 button {
@@ -36,7 +38,7 @@ button {
   font-size: 30px;
 }
 
-.form-container {
+.form-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,7 +46,7 @@ button {
   font-size: 30px;
 }
 
-.form-container>p {
+.form-block__request {
   background-color: rgba(109, 178, 213, 0.664);
   color: rgba(233, 240, 158);
   text-shadow: 2px 2px black;
@@ -53,6 +55,7 @@ button {
 
 .main-container {
   overflow: auto;
+  position: relative;
 }
 
 .memo-container {
@@ -116,7 +119,44 @@ justify-content: space-evenly;
   box-shadow: 0px 0px 18px rgb(255, 255, 255);
 }
 
-.sidebar-container {
+.scorebar {
+  position: sticky;
+  top: 0;
+  background-color: rgb(189, 196, 47);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 26px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-shadow: 1px 1px 3px black;
+  margin-bottom: 20px;
+}
+
+.scorebar__correct {
+  background-color: rgb(74, 196, 47);
+  padding: 20px;
+}
+
+.scorebar__incorrect {
+  background-color: rgb(196, 67, 47);
+  padding: 20px;
+}
+
+.scorebar__progressbar {
+  width: 15vw;
+  height: 3.5vh;
+  background-color: rgb(175, 138, 27);
+}
+
+.scorebar__progress {
+  width: 0vw;
+  height: 3.5vh;
+  background-color: rgb(36, 52, 195);
+}
+
+.sidebar {
   position: fixed;
   right: 0;
   width: 300px;
