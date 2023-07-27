@@ -11,17 +11,23 @@ import shuffle from "./shuffle.js";
 export default function App() {
 
     const [initData, setInitData] = useState([]);
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [answers, setAnswers] = useState({ correctAnswers: [], incorrectAnswers: [] });
+
+    const [isScoreShown, setIsScoreShown] = useState(false);
 
     function collectData(event) {
         let formValue = event.target.value;
         setInitData([formValue]);
     }
 
+    function toggleScorebar() {
+        setIsScoreShown(isShown => !isShown)
+    }
+
     function processData(event) {
         event.preventDefault();
-        setIsSubmitted(true);
+        setIsFormSubmitted(true);
 
         setInitData(oldData => {
             const dataArray = oldData[0].split(/\r?\n/);
@@ -100,7 +106,7 @@ export default function App() {
         />
     })
 
-  
+
     let stage = <Form
         data={initData}
         collect={collectData}
@@ -108,9 +114,9 @@ export default function App() {
     />;
 
 
-    if (isSubmitted && initData.length) {
+    if (isFormSubmitted && initData.length) {
         stage = memos;
-    } else if (isSubmitted && !initData.length) {
+    } else if (isFormSubmitted && !initData.length) {
         stage = <Result
             correct={answers.correctAnswers}
             refresh={refreshData}
@@ -130,9 +136,13 @@ export default function App() {
                     correctAnswers={answers.correctAnswers}
                     incorrectAnswers={answers.incorrectAnswers}
                     data={initData}
+                    isScoreShown={isScoreShown}
                 />
                 <Sidebar
-
+                    toggleScorebar={toggleScorebar}
+                    isScoreShown={isScoreShown}
+                    initData={initData}
+                    isFormSubmitted={isFormSubmitted}
                 />
 
             </div>

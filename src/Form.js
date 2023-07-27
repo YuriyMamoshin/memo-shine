@@ -7,7 +7,7 @@ export default function Form(props) {
                     
                     onChange={event => props.collect(event)}
                 />
-                <button>Send data</button>
+                <button className="control-button">Send data</button>
             </form>
         </div>
 

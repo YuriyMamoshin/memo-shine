@@ -11,7 +11,7 @@ export default function Result(props) {
             }
             </div>
 
-            <button onClick={props.refresh}>Next stage</button>
+            <button className="control-button" onClick={props.refresh}>Next stage</button>
         </div>
     )
 }

@@ -32,7 +32,8 @@
   height: 50vh;
 }
 
-button {
+
+.control-button {
   background-color: rgba(165, 216, 241, 0.664);
   color: black;
   font-size: 30px;
@@ -57,6 +58,7 @@ button {
   overflow: auto;
   position: relative;
 }
+
 
 .memo-container {
   display: grid;
@@ -119,19 +121,41 @@ justify-content: space-evenly;
   box-shadow: 0px 0px 18px rgb(255, 255, 255);
 }
 
+.result-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  font-size: 26px;
+  margin-top: 25%;
+}
+
+.result-text {
+  text-shadow: 1px 1px 3px black;
+  padding: 20px;
+  margin-bottom: 30px;
+  background-color: rgba(233, 150, 122, 0.664);
+}
+
 .scorebar {
+  height: 10vh;
   position: sticky;
   top: 0;
-  background-color: rgb(189, 196, 47);
   font-family: 'Times New Roman', Times, serif;
   font-size: 26px;
   font-weight: 600;
   display: flex;
+  text-shadow: 1px 1px 3px black;
+  background-color: rgb(189, 196, 47);
+}
+
+.scorebar__content {
+  width: 100%;
+display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  text-shadow: 1px 1px 3px black;
-  margin-bottom: 20px;
 }
 
 .scorebar__correct {
@@ -172,19 +196,3 @@ justify-content: space-evenly;
   text-shadow: 1px 1px 3px black;
 }
 
-.result-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
-  font-size: 26px;
-  margin-top: 25%;
-}
-
-.result-text {
-  text-shadow: 1px 1px 3px black;
-  padding: 20px;
-  margin-bottom: 30px;
-  background-color: rgba(233, 150, 122, 0.664);
-}
