@@ -5,12 +5,13 @@ import { nanoid } from "nanoid";
 import Sidebar from "./Sidebar";
 import Result from "./Result";
 import Main from "./Main";
+import Finish from "./Finish";
 
 import shuffle from "./shuffle.js";
 
 export default function App() {
 
-    const [initData, setInitData] = useState([]);
+    const [data, setData] = useState([]);
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [answers, setAnswers] = useState({ correctAnswers: [], incorrectAnswers: [] });
 
@@ -18,18 +19,19 @@ export default function App() {
 
     function collectData(event) {
         let formValue = event.target.value;
-        setInitData([formValue]);
+        setData([formValue]);
     }
 
     function toggleScorebar() {
         setIsScoreShown(isShown => !isShown)
     }
 
+
     function processData(event) {
         event.preventDefault();
         setIsFormSubmitted(true);
 
-        setInitData(oldData => {
+        setData(oldData => {
             const dataArray = oldData[0].split(/\r?\n/);
             const filteredArray = dataArray.filter(piece => piece.includes(" - "));
 
@@ -46,8 +48,9 @@ export default function App() {
         })
     }
 
+
     function checkAnswer(id) {
-        setInitData(oldData => {
+        setData(oldData => {
             return oldData.map(memo => {
                 return memo.id === id ?
                     { ...memo, checked: true } :
@@ -56,8 +59,9 @@ export default function App() {
         })
     }
 
+
     function gradeAnswer(id, gradeId) {
-        setInitData(oldData => {
+        setData(oldData => {
 
             const memosArray = oldData.reduce((res, memo) => {
                 res[memo.id !== id ? "residualMemos" : "gradedMemo"].push(memo);
@@ -85,16 +89,22 @@ export default function App() {
 
 
     function refreshData() {
-        const shuffledArray = shuffle(answers.incorrectAnswers);
-        setInitData(shuffledArray.map(piece => ({
-            ...piece,
-            checked: false
-        })));
-        setAnswers({ correctAnswers: [], incorrectAnswers: [] });
+        if (answers.incorrectAnswers.length) {
+            setData(shuffle(answers.incorrectAnswers).map(piece => ({
+                ...piece,
+                checked: false
+            })));
+            console.log(answers);
+            setAnswers({ correctAnswers: [], incorrectAnswers: [] });
+            console.log(answers);
+        } else {
+            setAnswers(null);
+            console.log(answers);
+        }
     }
 
 
-    const memos = initData.map(memo => {
+    const memos = data.map(memo => {
         return <Memo
             key={memo.id}
             answer={memo.answer}
@@ -106,22 +116,64 @@ export default function App() {
         />
     })
 
+    function defineStage() {
+        if (isFormSubmitted && data.length) {
+            return {
+                id: 2,
+                content: memos
+            }
 
-    let stage = <Form
-        data={initData}
-        collect={collectData}
-        process={processData}
-    />;
+        } else if (isFormSubmitted && !data.length && answers.incorrectAnswers.length) {
+            return {
+                id: 3,
+                content: <Result
+                    answers={answers}
+                    refresh={refreshData}
+                />
+            }
 
+        } else if (isFormSubmitted && !data.length) {
+            return {
+                id: 4,
+                content: <Finish
+                />
+            }
 
-    if (isFormSubmitted && initData.length) {
-        stage = memos;
-    } else if (isFormSubmitted && !initData.length) {
-        stage = <Result
-            correct={answers.correctAnswers}
-            refresh={refreshData}
-        />;
+        } else {
+            return {
+                id: 1,
+                content: <Form
+                    data={data}
+                    collect={collectData}
+                    process={processData}
+                />
+            }
+        }
+
     }
+
+    // function manageStages() {
+    //     switch (defineStage()) {
+    //         case 2:
+    //             return memos;
+
+    //         case 3:
+    //             return <Result
+    //                 answers={answers}
+    //                 refresh={refreshData}
+    //             />;
+    //         case 4:
+    //             return <Finish
+    //             />;
+
+    //         default:
+    //             return <Form
+    //                 data={data}
+    //                 collect={collectData}
+    //                 process={processData}
+    //             />;
+    //     }
+    // }
 
 
 
@@ -132,16 +184,18 @@ export default function App() {
             <div className="start">
 
                 <Main
-                    content={stage}
+                    content={defineStage().content}
+                    defineStage={defineStage}
                     correctAnswers={answers.correctAnswers}
                     incorrectAnswers={answers.incorrectAnswers}
-                    data={initData}
+                    data={data}
                     isScoreShown={isScoreShown}
+                    isFormSubmitted={isFormSubmitted}
                 />
                 <Sidebar
                     toggleScorebar={toggleScorebar}
                     isScoreShown={isScoreShown}
-                    initData={initData}
+                    data={data}
                     isFormSubmitted={isFormSubmitted}
                 />
 

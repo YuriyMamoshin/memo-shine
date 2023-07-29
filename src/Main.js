@@ -4,10 +4,14 @@ export default function Main(props) {
     return (
         <div className="main-container">
            
-          <Scorebar 
-            score = {props}
-            isScoreShown={props.isScoreShown}
-            /> 
+           
+           {props.defineStage().id > 1 && props.defineStage().id < 4 && <Scorebar
+                score={props}
+                isScoreShown={props.isScoreShown}
+            />
+            } 
+
+
             {props.content}
         </div>
     )

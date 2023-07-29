@@ -1,5 +1,7 @@
 export default function Scorebar(props) {
 
+
+
     let answeredQuestionsQuantity = props.score.correctAnswers.length + props.score.incorrectAnswers.length;
     let questionsQuantity = props.score.data.length + answeredQuestionsQuantity;
 
@@ -8,7 +10,7 @@ export default function Scorebar(props) {
 
         <div className="scorebar">
 
-            {props.isScoreShown ?
+            {props.isScoreShown || !props.score.data.length ?
                 <div className="scorebar__content">
                     <p>Score:</p>
                     <p className="scorebar__correct">{props.score.correctAnswers.length}</p>
