@@ -11,11 +11,21 @@ import shuffle from "./shuffle.js";
 
 export default function App() {
 
-    const [data, setData] = useState([]);
+    const dummyText = 
+    `lorem - ipsum
+dolor - sit
+amet - consectetur
+adipisicing - elit
+repudiandae - fuga
+`;
+
+    const [data, setData] = useState([dummyText]);
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [answers, setAnswers] = useState({ correctAnswers: [], incorrectAnswers: [] });
 
     const [isScoreShown, setIsScoreShown] = useState(false);
+
+    const [stats, setStats] = useState([]);
 
     function collectData(event) {
         let formValue = event.target.value;
@@ -89,18 +99,21 @@ export default function App() {
 
 
     function refreshData() {
-        if (answers.incorrectAnswers.length) {
+ 
+        setStats(prevStats => {
+           let newStats = [...prevStats];
+           newStats[prevStats.length] = answers.correctAnswers;
+           return newStats;
+    });
+
             setData(shuffle(answers.incorrectAnswers).map(piece => ({
                 ...piece,
                 checked: false
             })));
-            console.log(answers);
+        
             setAnswers({ correctAnswers: [], incorrectAnswers: [] });
-            console.log(answers);
-        } else {
-            setAnswers(null);
-            console.log(answers);
-        }
+          
+
     }
 
 
@@ -115,6 +128,7 @@ export default function App() {
             memoId={memo.id}
         />
     })
+
 
     function defineStage() {
         if (isFormSubmitted && data.length) {
@@ -151,30 +165,6 @@ export default function App() {
         }
 
     }
-
-    // function manageStages() {
-    //     switch (defineStage()) {
-    //         case 2:
-    //             return memos;
-
-    //         case 3:
-    //             return <Result
-    //                 answers={answers}
-    //                 refresh={refreshData}
-    //             />;
-    //         case 4:
-    //             return <Finish
-    //             />;
-
-    //         default:
-    //             return <Form
-    //                 data={data}
-    //                 collect={collectData}
-    //                 process={processData}
-    //             />;
-    //     }
-    // }
-
 
 
     return (
