@@ -1,5 +1,7 @@
 export default function FinalInfo(props) {
+    console.log(props.stats);
     return (
-        <div>Content with final info</div>
+        <div>{props.stats.map(obj => obj.answer).join(", ")}</div>
+        // <div>noting really</div>
     )
 }

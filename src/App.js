@@ -11,13 +11,12 @@ import shuffle from "./shuffle.js";
 
 export default function App() {
 
-    const dummyText = 
-    `lorem - ipsum
+    const dummyText =
+        `lorem - ipsum
 dolor - sit
 amet - consectetur
 adipisicing - elit
-repudiandae - fuga
-`;
+repudiandae - fuga`;
 
     const [data, setData] = useState([dummyText]);
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -26,6 +25,9 @@ repudiandae - fuga
     const [isScoreShown, setIsScoreShown] = useState(false);
 
     const [stats, setStats] = useState([]);
+
+    let [isStatsShown, setIsStatsShown] = useState(false);
+    let [isFinishShown, setIsFinishShown] = useState(false);
 
     function collectData(event) {
         let formValue = event.target.value;
@@ -97,22 +99,28 @@ repudiandae - fuga
         })
     }
 
+    function collectStats() {
+        setStats(prevStats => {
+            let newStats = [...prevStats];
+            newStats[prevStats.length] = answers.correctAnswers;
+            return newStats;
+        });
+    }
 
     function refreshData() {
- 
-        setStats(prevStats => {
-           let newStats = [...prevStats];
-           newStats[prevStats.length] = answers.correctAnswers;
-           return newStats;
-    });
 
+        collectStats();
+
+        if (answers.incorrectAnswers.length) {
             setData(shuffle(answers.incorrectAnswers).map(piece => ({
                 ...piece,
                 checked: false
             })));
-        
+
             setAnswers({ correctAnswers: [], incorrectAnswers: [] });
-          
+        } else {
+            setIsFinishShown(true);
+        }
 
     }
 
@@ -137,19 +145,23 @@ repudiandae - fuga
                 content: memos
             }
 
-        } else if (isFormSubmitted && !data.length && answers.incorrectAnswers.length) {
+        } else if (isFormSubmitted && !data.length && !isFinishShown) {
             return {
                 id: 3,
                 content: <Result
                     answers={answers}
                     refresh={refreshData}
+                    isFinishShown={isFinishShown}
                 />
             }
 
-        } else if (isFormSubmitted && !data.length) {
+        } else if (isFinishShown) {
             return {
                 id: 4,
                 content: <Finish
+                    stats={stats}
+                    showStats={() => setIsStatsShown(true)}
+                    statsShown={isStatsShown}
                 />
             }
 
