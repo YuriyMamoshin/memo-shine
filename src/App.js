@@ -12,7 +12,7 @@ import shuffle from "./shuffle.js";
 export default function App() {
 
     const dummyText =
-        `lorem - ipsum
+`lorem - ipsum
 dolor - sit
 amet - consectetur
 adipisicing - elit
@@ -26,13 +26,15 @@ repudiandae - fuga`;
 
     const [stats, setStats] = useState([]);
 
-    let [isStatsShown, setIsStatsShown] = useState(false);
-    let [isFinishShown, setIsFinishShown] = useState(false);
+    const [isStatsShown, setIsStatsShown] = useState(false);
+    const [isFinishShown, setIsFinishShown] = useState(false);
+
 
     function collectData(event) {
         let formValue = event.target.value;
         setData([formValue]);
     }
+
 
     function toggleScorebar() {
         setIsScoreShown(isShown => !isShown)

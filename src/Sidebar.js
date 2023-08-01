@@ -2,7 +2,7 @@ export default function Sidebar(props) {
 
 
     return (
-        <div className="sidebar">
+        <div className="sidebar vertical-flex-container">
           {  props.isFormSubmitted && !!props.data.length &&
           <button className="control-button" onClick={props.toggleScorebar}>{!props.isScoreShown ? "Show" : "Hide"} the score</button> 
           }

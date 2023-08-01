@@ -7,7 +7,7 @@ export default function Result(props) {
     return (
 
 
-            <div className="result-container">
+            <div className="result-container vertical-flex-container">
 
                 <div className="memo-button result-text">
                     {correctString ? <div> You have answered these questions correctly:

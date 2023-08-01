@@ -12,12 +12,23 @@
   grid-template-rows: 100vh;
 }
 
-.form-block__form {
+
+.vertical-flex-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+.horizontal-flex-container {
+  display: flex;
+  flex-direction: row;
+
+}
+
+/* .form-block__form {
+
+} */
 
 .form-block__textarea {
   font-size: 15px;
@@ -40,10 +51,6 @@
 }
 
 .form-block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   font-size: 30px;
 }
 
@@ -122,10 +129,6 @@ justify-content: space-evenly;
 }
 
 .result-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   justify-items: center;
   font-size: 26px;
   margin-top: 25%;
@@ -189,10 +192,6 @@ display: flex;
   font-family: 'Times New Roman', Times, serif;
   font-size: 26px;
   font-weight: 600;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-shadow: 1px 1px 3px black;
 }
 

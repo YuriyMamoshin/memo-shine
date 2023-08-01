@@ -8,10 +8,10 @@ export default function Scorebar(props) {
 
     return (
 
-        <div className="scorebar">
+        <div className="scorebar horizontal-flex-container">
 
             {props.isScoreShown || !props.score.data.length ?
-                <div className="scorebar__content">
+                <div className="scorebar__content horizontal-flex-container">
                     <p>Score:</p>
                     <p className="scorebar__correct">{props.score.correctAnswers.length}</p>
                     <p className="scorebar__incorrect">{props.score.incorrectAnswers.length}</p>
