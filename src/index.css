@@ -87,12 +87,12 @@
 }
 
 .memo-answer {
-  width: 200px;
+  width: 20vw;
   background-color: rgba(97, 97, 234, 0.664);
 }
 
 .memo-definition {
-  width: 400px;
+  width: 20vw;
   background-color: rgba(146, 58, 228, 0.664);
 }
 
@@ -195,3 +195,26 @@ display: flex;
   text-shadow: 1px 1px 3px black;
 }
 
+.finish-container {
+  height: 100vh;
+}
+
+.finish-card {
+  width: 50vw;
+  text-align: center;
+  padding: 2vh 2vw;
+}
+
+.finish-card_green {
+  background-color: rgba(137, 229, 9, 0.664);
+  margin-bottom: 5vh;
+}
+
+.finish-card_yellow {
+  background-color: rgba(244, 221, 12, 0.664);
+  margin-bottom: 5vh;
+}
+
+.finish-card_red {
+  background-color: rgba(233, 44, 15, 0.664);
+}

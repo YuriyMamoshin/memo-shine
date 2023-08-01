@@ -13,7 +13,7 @@ export default function Finish(props) {
 
 
     return (
-        <div className="vertical-flex-container">
+        <div className="finish-container vertical-flex-container">
 
             {!props.statsShown ?
                 <button className="control-button"onClick={props.showStats}>Show stats</button>

@@ -2,10 +2,9 @@ import Grade from "./Grade"
 
 export default function Memo(props) {
     return (
-        <div
-            className="memo-container"
-        >
-            {!props.checked ? <div className="grade-button memo" onClick={props.check}>Check</div> :
+        <div className="memo-container">
+            {!props.checked ? 
+            <div className="grade-button memo" onClick={props.check}>Check</div> :
                 <div className="grade-container">
                     <Grade
                         grade={props.grade}
