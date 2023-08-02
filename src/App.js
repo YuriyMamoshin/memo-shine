@@ -50,7 +50,7 @@ repudiandae - fuga`;
             const filteredArray = dataArray.filter(piece => piece.includes(" - "));
 
             return filteredArray.map(piece => {
-                let [answer, definition] = piece.split(" - ");
+                const [answer, definition] = piece.split(" - ");
 
                 return {
                     id: nanoid(),

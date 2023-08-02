@@ -10,7 +10,7 @@ export default function FinalInfo(props) {
         }
     }
     return (
-        <div className={"finish-card memo " + defineClass(props.index)}>Attempt №{props.index + 1}: {props.stats.map(obj => obj.answer).join(", ")}</div>
+        <div className={"finish-card card " + defineClass(props.index)}>Attempt №{props.index + 1}: {props.stats.map(obj => obj.answer).join(", ")}</div>
 
     )
 }

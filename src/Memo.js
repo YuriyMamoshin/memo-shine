@@ -4,11 +4,13 @@ export default function Memo(props) {
     return (
         <div className="memo-container">
             {!props.checked ? 
-            <div className="grade-button memo" onClick={props.check}>Check</div> :
+
+            <div className="grade-button card vertical-flex-container" onClick={props.check}>Check</div> :
+
                 <div className="grade-container">
                     <Grade
                         grade={props.grade}
-                        class="grade-button correct-button memo"
+                        class="grade-button correct-button"
                         style={{ visibility: props.checked ? "visible" : "hidden" }}
                         content="Yes"
                         memoId={props.memoId}
@@ -16,7 +18,7 @@ export default function Memo(props) {
                     />
                     <Grade
                         grade={props.grade}
-                        class="grade-button incorrect-button memo"
+                        class="grade-button incorrect-button"
                         style={{ visibility: props.checked ? "visible" : "hidden" }}
                         content="No"
                         memoId={props.memoId}
@@ -24,11 +26,9 @@ export default function Memo(props) {
                     />
                 </div>}
 
-            <div className="memo-answer memo">{
-                props.checked ? props.answer : "???"
-            }
-            </div>
-            <div className="memo-definition memo">{props.definition}</div>
+            <div className="memo-answer card vertical-flex-container"><p className="pink">{ props.checked ? props.answer : "???"}</p></div>
+            <div className="memo-definition card vertical-flex-container"><p className="pink">{props.definition}</p></div>
+
         </div>
     )
 }

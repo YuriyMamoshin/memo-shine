@@ -23,7 +23,6 @@
 .horizontal-flex-container {
   display: flex;
   flex-direction: row;
-
 }
 
 /* .form-block__form {
@@ -76,33 +75,23 @@
   text-shadow: 0px 0px 3px black;
 }
 
-.memo-container>div {
-  border: solid 1px black;
-  padding: 20px;
-  font-size: 26px;
-  text-align: center;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  
-}
-
 .memo-answer {
-  width: 20vw;
   background-color: rgba(97, 97, 234, 0.664);
 }
 
 .memo-definition {
-  width: 20vw;
   background-color: rgba(146, 58, 228, 0.664);
 }
+
 
 .grade-button {
   border-radius: 100px;
   font-family: sans-serif;
   color: white;
   cursor: pointer;
-  min-width: 70px;
-  min-height: 50px;
+  min-width: 10vw;
+  min-height: 10vh;
+  background-color: rgba(54, 119, 210, 0.664);
 }
 
 .grade-button:active {
@@ -124,8 +113,15 @@ justify-content: space-evenly;
   background-color: rgba(231, 57, 34, 0.664);
 }
 
-.memo {
+.card {
   box-shadow: 0px 0px 18px rgb(255, 255, 255);
+  overflow: auto;
+  border: solid 1px black;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-size: 1vw;
+  height: 10vh;
+  width: 20vw;
 }
 
 .result-container {
@@ -217,4 +213,9 @@ display: flex;
 
 .finish-card_red {
   background-color: rgba(233, 44, 15, 0.664);
+}
+
+.grade {
+  text-align: center;
+  vertical-align: middle;
 }
