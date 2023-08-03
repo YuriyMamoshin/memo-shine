@@ -10,7 +10,7 @@ export default function Memo(props) {
                 <div className="grade-container">
                     <Grade
                         grade={props.grade}
-                        class="grade-button correct-button"
+                        class="correct-button"
                         style={{ visibility: props.checked ? "visible" : "hidden" }}
                         content="Yes"
                         memoId={props.memoId}
@@ -18,7 +18,7 @@ export default function Memo(props) {
                     />
                     <Grade
                         grade={props.grade}
-                        class="grade-button incorrect-button"
+                        class="incorrect-button"
                         style={{ visibility: props.checked ? "visible" : "hidden" }}
                         content="No"
                         memoId={props.memoId}
