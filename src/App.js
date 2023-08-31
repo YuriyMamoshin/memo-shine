@@ -12,13 +12,14 @@ import shuffle from "./shuffle.js";
 export default function App() {
 
     const dummyText =
-`lorem - ipsum
+        `lorem - ipsum
 dolor - sit
 amet - consectetur
 adipisicing - elit
 repudiandae - fuga`;
 
     const [data, setData] = useState([dummyText]);
+
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [answers, setAnswers] = useState({ correctAnswers: [], incorrectAnswers: [] });
 
@@ -36,30 +37,44 @@ repudiandae - fuga`;
     }
 
 
-    function toggleScorebar() {
-        setIsScoreShown(isShown => !isShown)
+    function validateData(incomingData) {
+        const splittedData = incomingData[0].split(/\r?\n/);
+       
+
+        const checkedData = splittedData.reduce((result, dataString) => {
+            result[dataString.includes(" - ") ? "validArr" : "invalidArr"].push(dataString);
+            return result;
+        }, { validArr: [], invalidArr: [] })
+
+        try {
+            if (checkedData.invalidArr.length) {
+                throw new Error("It looks like we have some problematic strings without dash separation: ")
+            }
+          } catch (err) {
+  alert(`${err.message} ${checkedData.invalidArr.join(", ")}`)
+          }
+
+
+        return checkedData.validArr.map(piece => {
+            const [answer, definition] = piece.split(" - ");
+
+            return {
+                id: nanoid(),
+                answer: answer,
+                definition: definition,
+                checked: false
+            }
+        })
+    }
+
+    function processData() {
+        setIsFormSubmitted(true);
+        setData(validateData(data))
     }
 
 
-    function processData(event) {
-        event.preventDefault();
-        setIsFormSubmitted(true);
-
-        setData(oldData => {
-            const dataArray = oldData[0].split(/\r?\n/);
-            const filteredArray = dataArray.filter(piece => piece.includes(" - "));
-
-            return filteredArray.map(piece => {
-                const [answer, definition] = piece.split(" - ");
-
-                return {
-                    id: nanoid(),
-                    answer: answer,
-                    definition: definition,
-                    checked: false
-                }
-            })
-        })
+    function toggleScorebar() {
+        setIsScoreShown(isScoreShown => !isScoreShown);
     }
 
 

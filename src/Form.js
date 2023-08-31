@@ -1,16 +1,14 @@
 export default function Form(props) {
     return (
         <div className="form-block vertical-flex-container">
-            <p className="form-block__request">Please, add some data, in format "answer - question"</p>
-            <form className="form-block__form vertical-flex-container" onSubmit={event => props.process(event)}>
-                <textarea className="form-block__textarea" 
-                value={props.data} 
-
-               
-                    
+            <p className="form-block__request">We expext some dash-separated list here"</p>
+            <form className="vertical-flex-container">
+                <textarea
+                    className="form-block__textarea"
+                    value={props.data}
                     onChange={event => props.collect(event)}
                 />
-                <button className="control-button">Send data</button>
+                <div className="control-button" onClick={props.process}> Send data</div>
             </form>
         </div>
 
