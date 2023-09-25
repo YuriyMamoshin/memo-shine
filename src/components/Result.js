@@ -1,7 +1,7 @@
 
 
-export default function Result(props) {
-    const correctArray = props.answers.correctAnswers.map(obj => obj.answer);
+export default function Result({answers, refresh, isFinishShown}) {
+    const correctArray = answers.correctAnswers.map(obj => obj.answer);
     const correctString = correctArray.join(", ");
 
     return (
@@ -17,7 +17,7 @@ export default function Result(props) {
                 </div>
 
 
-    <button className="control-button" onClick={props.refresh}>{props.isFinishShown ? "Finish" : "Next stage"}</button> 
+    <button className="control-button" onClick={refresh}>{isFinishShown ? "Finish" : "Next stage"}</button> 
 
 
 

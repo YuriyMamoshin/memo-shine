@@ -1,20 +1,20 @@
-export default function Scorebar(props) {
+export default function Scorebar({score, isScoreShown}) {
 
 
 
-    let answeredQuestionsQuantity = props.score.correctAnswers.length + props.score.incorrectAnswers.length;
-    let questionsQuantity = props.score.data.length + answeredQuestionsQuantity;
+    let answeredQuestionsQuantity = score.correctAnswers.length + score.incorrectAnswers.length;
+    let questionsQuantity = score.data.length + answeredQuestionsQuantity;
 
 
     return (
 
         <div className="scorebar horizontal-flex-container">
 
-            {props.isScoreShown || !props.score.data.length ?
+            {isScoreShown || !score.data.length ?
                 <div className="scorebar__content horizontal-flex-container">
                     <p>Score:</p>
-                    <p className="scorebar__correct">{props.score.correctAnswers.length}</p>
-                    <p className="scorebar__incorrect">{props.score.incorrectAnswers.length}</p>
+                    <p className="scorebar__correct">{score.correctAnswers.length}</p>
+                    <p className="scorebar__incorrect">{score.incorrectAnswers.length}</p>
                     <p>Done: {(answeredQuestionsQuantity / questionsQuantity * 100).toFixed(0)}% </p>
                     <div className="scorebar__progressbar">
 

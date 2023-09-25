@@ -1,9 +1,9 @@
 import FinalInfo from "./FinalInfo"
 import { nanoid } from "nanoid"
 
-export default function Finish(props) {
+export default function Finish({stats, statsShown, showStats}) {
 
-    const finalInfos = props.stats.map((statsPiece, index) => (
+    const finalInfos = stats.map((statsPiece, index) => (
         <FinalInfo
         key={nanoid()}
         stats={statsPiece}
@@ -15,8 +15,8 @@ export default function Finish(props) {
     return (
         <div className="finish-container vertical-flex-container">
 
-            {!props.statsShown ?
-                <button className="control-button"onClick={props.showStats}>Show stats</button>
+            {!statsShown ?
+                <button className="control-button"onClick={showStats}>Show stats</button>
                 :     
                 <div>
                     {finalInfos}

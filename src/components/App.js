@@ -7,7 +7,7 @@ import Result from "./Result";
 import Main from "./Main";
 import Finish from "./Finish";
 
-import shuffle from "./shuffle.js";
+import shuffle from "../shuffle.js";
 
 export default function App() {
 
@@ -19,14 +19,11 @@ adipisicing - elit
 repudiandae - fuga`;
 
     const [data, setData] = useState([dummyText]);
-
-    const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [answers, setAnswers] = useState({ correctAnswers: [], incorrectAnswers: [] });
-
-    const [isScoreShown, setIsScoreShown] = useState(false);
-
     const [stats, setStats] = useState([]);
 
+    const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+    const [isScoreShown, setIsScoreShown] = useState(false);
     const [isStatsShown, setIsStatsShown] = useState(false);
     const [isFinishShown, setIsFinishShown] = useState(false);
 
@@ -38,24 +35,24 @@ repudiandae - fuga`;
 
 
     function validateData(incomingData) {
-        const splittedData = incomingData[0].split(/\r?\n/);
-       
+        const splittedList = incomingData[0].split(/\r?\n/);
 
-        const checkedData = splittedData.reduce((result, dataString) => {
+
+        const checkedList = splittedList.reduce((result, dataString) => {
             result[dataString.includes(" - ") ? "validArr" : "invalidArr"].push(dataString);
             return result;
         }, { validArr: [], invalidArr: [] })
 
         try {
-            if (checkedData.invalidArr.length) {
+            if (checkedList.invalidArr.length) {
                 throw new Error("It looks like we have some problematic strings without dash separation: ")
             }
-          } catch (err) {
-  alert(`${err.message} ${checkedData.invalidArr.join(", ")}`)
-          }
+        } catch (err) {
+            alert(`${err.message} ${checkedList.invalidArr.join(", ")}`)
+        }
 
 
-        return checkedData.validArr.map(piece => {
+        return checkedList.validArr.map(piece => {
             const [answer, definition] = piece.split(" - ");
 
             return {
